@@ -25,7 +25,7 @@ for number, letters in letter_dict.items():
     for letter in letters:
         letter_to_number[letter] = number
 
-vowels = ['A', 'E', 'I', 'O', 'U']
+vowels = ['A', 'E', 'I', 'O', 'U', 'Y']
 
 class PositionRule(ABC):
     @classmethod
@@ -245,20 +245,20 @@ stone_names = [
         "Apophyllite",
     ]
 
-def calculate_mineral_DNA(names, sirnames, dob):
+def calculate_mineral_DNA(names, surnames, dob):
     names = [remove_accents(x) for x in names]
-    sirnames = [remove_accents(x) for x in sirnames]
-    sirnames = list(chain.from_iterable([x.split("-") for x in sirnames]))
-    sirnames = list(chain.from_iterable([x.split(" ") for x in sirnames]))
+    surnames = [remove_accents(x) for x in surnames]
+    surnames = list(chain.from_iterable([x.split("-") for x in surnames]))
+    surnames = list(chain.from_iterable([x.split(" ") for x in surnames]))
     names = [x.upper() for x in names]
-    sirnames = [x.upper() for x in sirnames]
+    surnames = [x.upper() for x in surnames]
     dob = [int(x) for x in dob.split("/")]
 
     result_values = []
     results = []
 
     for position in positions:
-        value = position.run_rule(names, sirnames, dob, result_values)
+        value = position.run_rule(names, surnames, dob, result_values)
         reduced = reduce_value(value)
         name = position.get_name_en()
         stone_name = stone_names[reduced - 1]
