@@ -1,8 +1,7 @@
-import argparse
-
 from abc import ABC, abstractmethod
 from itertools import chain
 from typing import List
+from enum import Enum, auto
 
 # Original letter dictionary
 letter_dict = {
@@ -172,7 +171,7 @@ def reduce_value(x: int, threshold=33) -> int:
         x = sum(digits)
     return x
 
-def remove_accents(input_str: str) -> str:
+def deaccentuate_characters(input_str: str) -> str:
     accents_mapping = {
         'á': 'a', 'à': 'a', 'ä': 'a', 'â': 'a', 'ã': 'a', 'å': 'a',
         'é': 'e', 'è': 'e', 'ë': 'e', 'ê': 'e',
@@ -208,6 +207,41 @@ positions: List[PositionRule] = [
         RepeatDecisions,
         Experimentation,
     ]
+
+class Stones(Enum):
+    ROSE_QUARTZ = auto()
+    RED_JASPER = auto()
+    BLUE_CALCITE = auto()
+    IMPERIAL_JASPER = auto()
+    EMERALD = auto()
+    GARNET = auto()
+    CITRINE = auto()
+    OBSIDIAN = auto()
+    AQUAMARINE = auto()
+    RHODONITE = auto()
+    CARNELIAN = auto()
+    PETRIFIED_WOOD = auto()
+    HEMATITE = auto()
+    AMETHYST = auto()
+    MALACHITE = auto()
+    GREEN_OPAL = auto()
+    ARAGONITE = auto()
+    BLACK_MOONSTONE = auto()
+    TOPAZ = auto()
+    LAPIS_LAZULI = auto()
+    BLACK_TOURMALINE = auto()
+    QUARTZ = auto()
+    AZURITE = auto()
+    AMAZONITE = auto()
+    SEPTARIA = auto()
+    PYRITE = auto()
+    GREEN_FLUORITE = auto()
+    BLUE_APATITE = auto()
+    SODALITE = auto()
+    SMOKY_QUARTZ = auto()
+    SULFUR = auto()
+    LABRADORITE = auto()
+    APOPHYLLITE = auto()
 
 stone_names = [
         "Quartz rose",
@@ -246,8 +280,9 @@ stone_names = [
     ]
 
 def calculate_mineral_DNA(names, surnames, dob):
-    names = [remove_accents(x) for x in names]
-    surnames = [remove_accents(x) for x in surnames]
+    names = [deaccentuate_characters(x) for x in names]
+    names = [x.replace("-", "") for x in names]
+    surnames = [deaccentuate_characters(x) for x in surnames]
     surnames = list(chain.from_iterable([x.split("-") for x in surnames]))
     surnames = list(chain.from_iterable([x.split(" ") for x in surnames]))
     names = [x.upper() for x in names]
@@ -255,14 +290,13 @@ def calculate_mineral_DNA(names, surnames, dob):
     dob = [int(x) for x in dob.split("/")]
 
     result_values = []
-    results = []
+    results = {}
 
     for position in positions:
         value = position.run_rule(names, surnames, dob, result_values)
         reduced = reduce_value(value)
         name = position.get_name_en()
-        stone_name = stone_names[reduced - 1]
         result_values.append(reduced)
-        results.append([name, stone_name])
+        results[name] = reduced
 
     return results

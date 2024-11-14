@@ -1,72 +1,102 @@
 import json
-
 import pytest
+from typing import List, Dict
+from mineral_dna import app
+from mineral_dna.lib import Stones
 
-from hello_world import app
-
-
-@pytest.fixture()
-def apigw_event():
-    """ Generates API GW Event"""
-
-    return {
-        "body": '{ "test": "body"}',
-        "resource": "/{proxy+}",
-        "requestContext": {
-            "resourceId": "123456",
-            "apiId": "1234567890",
-            "resourcePath": "/{proxy+}",
-            "httpMethod": "POST",
-            "requestId": "c6af9ac6-7b61-11e6-9a41-93e8deadbeef",
-            "accountId": "123456789012",
-            "identity": {
-                "apiKey": "",
-                "userArn": "",
-                "cognitoAuthenticationType": "",
-                "caller": "",
-                "userAgent": "Custom User Agent String",
-                "user": "",
-                "cognitoIdentityPoolId": "",
-                "cognitoIdentityId": "",
-                "cognitoAuthenticationProvider": "",
-                "sourceIp": "127.0.0.1",
-                "accountId": "",
-            },
-            "stage": "prod",
-        },
-        "queryStringParameters": {"foo": "bar"},
-        "headers": {
-            "Via": "1.1 08f323deadbeefa7af34d5feb414ce27.cloudfront.net (CloudFront)",
-            "Accept-Language": "en-US,en;q=0.8",
-            "CloudFront-Is-Desktop-Viewer": "true",
-            "CloudFront-Is-SmartTV-Viewer": "false",
-            "CloudFront-Is-Mobile-Viewer": "false",
-            "X-Forwarded-For": "127.0.0.1, 127.0.0.2",
-            "CloudFront-Viewer-Country": "US",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-            "Upgrade-Insecure-Requests": "1",
-            "X-Forwarded-Port": "443",
-            "Host": "1234567890.execute-api.us-east-1.amazonaws.com",
-            "X-Forwarded-Proto": "https",
-            "X-Amz-Cf-Id": "aaaaaaaaaae3VYQb9jd-nvCd-de396Uhbp027Y2JvkCPNLmGJHqlaA==",
-            "CloudFront-Is-Tablet-Viewer": "false",
-            "Cache-Control": "max-age=0",
-            "User-Agent": "Custom User Agent String",
-            "CloudFront-Forwarded-Proto": "https",
-            "Accept-Encoding": "gzip, deflate, sdch",
-        },
-        "pathParameters": {"proxy": "/examplepath"},
-        "httpMethod": "POST",
-        "stageVariables": {"baz": "qux"},
-        "path": "/examplepath",
+@pytest.mark.parametrize("names, surnames, dob, expected", [
+    ("Julie Valerie", "Happillon", "29/09/1982", {
+        "origin": Stones.HEMATITE,
+        "elevation": Stones.MALACHITE,
+        "present": Stones.IMPERIAL_JASPER,
+        "daily_life_decision": Stones.LABRADORITE,
+        "identity": Stones.OBSIDIAN,
+        "interaction": Stones.OBSIDIAN,
+        "communication": Stones.GREEN_OPAL,
+        "immediate_decision": Stones.LABRADORITE,
+        "soul": Stones.EMERALD,
+        "truth": Stones.CITRINE,
+        "guidance": Stones.RHODONITE,
+        "repeat_decisions": Stones.QUARTZ,
+        "experimentation": Stones.AMETHYST,
+    }),
+    ("Claire", "Cattin", "30/07/1972", {
+        "origin": Stones.GARNET,
+        "elevation": Stones.RHODONITE,
+        "present": Stones.CARNELIAN,
+        "daily_life_decision": Stones.GREEN_FLUORITE,
+        "identity": Stones.SEPTARIA,
+        "interaction": Stones.GREEN_FLUORITE,
+        "communication": Stones.CITRINE,
+        "immediate_decision": Stones.AMETHYST,
+        "soul": Stones.RED_JASPER,
+        "truth": Stones.CITRINE,
+        "guidance": Stones.EMERALD,
+        "repeat_decisions": Stones.AMETHYST,
+        "experimentation": Stones.RHODONITE,
+    }),
+    ("Michelle Marie Josee Ghislaine", "Duvivier", "02/09/1968", {
+        "origin": Stones.LAPIS_LAZULI,
+        "elevation": Stones.SODALITE,
+        "present": Stones.PYRITE,
+        "daily_life_decision": Stones.PETRIFIED_WOOD,
+        "identity": Stones.ROSE_QUARTZ,
+        "interaction": Stones.AQUAMARINE,
+        "communication": Stones.RHODONITE,
+        "immediate_decision": Stones.LAPIS_LAZULI,
+        "soul": Stones.BLUE_APATITE,
+        "truth": Stones.RHODONITE,
+        "guidance": Stones.LABRADORITE,
+        "repeat_decisions": Stones.CITRINE,
+        "experimentation": Stones.PETRIFIED_WOOD,
+    }),
+    ("Nathalie Marie-Francoise", "Auzemery", "24/01/1963", {
+        "origin": Stones.RHODONITE,
+        "elevation": Stones.ARAGONITE,
+        "present": Stones.PYRITE,
+        "daily_life_decision": Stones.OBSIDIAN,
+        "identity": Stones.RHODONITE,
+        "interaction": Stones.HEMATITE,
+        "communication": Stones.AZURITE,
+        "immediate_decision": Stones.RHODONITE,
+        "soul": Stones.BLUE_CALCITE,
+        "truth": Stones.AMETHYST,
+        "guidance": Stones.BLACK_MOONSTONE,
+        "repeat_decisions": Stones.OBSIDIAN,
+        "experimentation": Stones.PYRITE,
+    }),
+    ("Sonia", "Schulz", "13/09/1984", {
+        "origin": Stones.RED_JASPER,
+        "elevation": Stones.AQUAMARINE,
+        "present": Stones.OBSIDIAN,
+        "daily_life_decision": Stones.TOPAZ,
+        "identity": Stones.TOPAZ,
+        "interaction": Stones.SODALITE,
+        "communication": Stones.PETRIFIED_WOOD,
+        "immediate_decision": Stones.GARNET,
+        "soul": Stones.AQUAMARINE,
+        "truth": Stones.PETRIFIED_WOOD,
+        "guidance": Stones.SEPTARIA,
+        "repeat_decisions": Stones.RHODONITE,
+        "experimentation": Stones.OBSIDIAN,
+    }),
+])
+def test_lambda_handler(names: str, surnames: str, dob: str, expected: Dict[str, int]):
+    event = {
+        "body": json.dumps(
+            {
+                "names": names,
+                "surnames": surnames,
+                "dob": dob,
+            }
+        )
     }
+    context = {}
 
+    response = app.lambda_handler(event, context)
+    actual = response["body"]["stones"]
+    for _, k in enumerate(actual):
+        actual[k] = Stones(actual[k])
 
-def test_lambda_handler(apigw_event):
-
-    ret = app.lambda_handler(apigw_event, "")
-    data = json.loads(ret["body"])
-
-    assert ret["statusCode"] == 200
-    assert "message" in ret["body"]
-    assert data["message"] == "hello world"
+    assert response["statusCode"] == 200
+    assert actual == expected
