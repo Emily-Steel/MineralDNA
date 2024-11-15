@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
   mineralDNA
@@ -23,11 +23,20 @@ Resources:
       Handler: app.lambda_handler
       Runtime: python3.13
       Architectures:
-      - x86_64
+        - x86_64
       Events:
         MineralDNA:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /mineral_dna
             Method: get
-
+            AuthorizationType: COGNITO_USER_POOLS
+            AuthorizerId: !Ref MineralDNACognitoAuthorizer
+  MineralDNACognitoAuthorizer:
+    Type: AWS::ApiGateway::Authorizer
+    Properties:
+      Name: MineralDNACognitoAuthorizer
+      IdentitySource: method.request.header.Authorization
+      RestApiId: !Ref MyApiGateway
+      Type: COGNITO_USER_POOLS
+      ProviderARNs: arn:aws:cognito-idp:eu-west-3:084828604969:userpool/eu-west-3_A5fBFb9pF
