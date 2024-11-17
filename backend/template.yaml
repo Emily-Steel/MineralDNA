@@ -4,20 +4,18 @@ Description: >
   mineralDNA
   SAM application for mineralDNA
 
-# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
   Function:
     Timeout: 3
 
     Tracing: Active
-    # You can add LoggingConfig parameters such as the Logformat, Log Group, and SystemLogLevel or ApplicationLogLevel. Learn more here https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-loggingconfig.
     LoggingConfig:
       LogFormat: JSON
   Api:
     TracingEnabled: true
 Resources:
   MineralDNAFunction:
-    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Type: AWS::Serverless::Function
     Properties:
       CodeUri: mineral_dna/
       Handler: app.lambda_handler
@@ -26,17 +24,20 @@ Resources:
         - x86_64
       Events:
         MineralDNA:
-          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Type: Api
           Properties:
             Path: /mineral_dna
-            Method: get
-            AuthorizationType: COGNITO_USER_POOLS
-            AuthorizerId: !Ref MineralDNACognitoAuthorizer
-  MineralDNACognitoAuthorizer:
-    Type: AWS::ApiGateway::Authorizer
-    Properties:
-      Name: MineralDNACognitoAuthorizer
-      IdentitySource: method.request.header.Authorization
-      RestApiId: !Ref MyApiGateway
-      Type: COGNITO_USER_POOLS
-      ProviderARNs: arn:aws:cognito-idp:eu-west-3:084828604969:userpool/eu-west-3_A5fBFb9pF
+            Method: POST
+            Cors:
+              AllowMethods: "OPTIONS,POST"
+              AllowOrigins: "http://localhost:5173,https://mineral-dna.emilysteel.software"
+              AllowHeaders: "*"
+        MineralDNAOptions:
+          Type: Api
+          Properties:
+            Path: /mineral_dna
+            Method: OPTIONS
+            Cors:
+              AllowMethods: "OPTIONS,POST"
+              AllowOrigins: "http://localhost:5173"
+              AllowHeaders: "*"

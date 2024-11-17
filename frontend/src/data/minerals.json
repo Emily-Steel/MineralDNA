@@ -1,0 +1,167 @@
+{
+  "1": {
+    "en": "Rose Quartz",
+    "fr": "Quartz rose",
+    "image": "/images/rose_quartz.png"
+  },
+  "2": {
+    "en": "Red Jasper",
+    "fr": "Jaspe rouge",
+    "image": "/images/red_jasper.png"
+  },
+  "3": {
+    "en": "Blue Calcite",
+    "fr": "Calcite bleue",
+    "image": "/images/blue_calcite.png"
+  },
+  "4": {
+    "en": "Imperial Jasper",
+    "fr": "Jaspe impérial / Polychrome",
+    "image": "/images/imperial_jasper.png"
+  },
+  "5": {
+    "en": "Emerald",
+    "fr": "Emeraude",
+    "image": "/images/emerald.png"
+  },
+  "6": {
+    "en": "Garnet",
+    "fr": "Grenat almandin",
+    "image": "/images/garnet.png"
+  },
+  "7": {
+    "en": "Citrine",
+    "fr": "Citrine",
+    "image": "/images/citrine.png"
+  },
+  "8": {
+    "en": "Obsidian",
+    "fr": "Obsidienne",
+    "image": "/images/obsidian.png"
+  },
+  "9": {
+    "en": "Aquamarine",
+    "fr": "Aigue marine",
+    "image": "/images/aquamarine.png"
+  },
+  "10": {
+    "en": "Rhodonite",
+    "fr": "Rhodonite",
+    "image": "/images/rhodonite.png"
+  },
+  "11": {
+    "en": "Carnelian",
+    "fr": "Cornaline",
+    "image": "/images/carnelian.png"
+  },
+  "12": {
+    "en": "Petrified Wood",
+    "fr": "Bois fossilisé",
+    "image": "/images/petrified_wood.png"
+  },
+  "13": {
+    "en": "Hematite",
+    "fr": "Hématite / Fer oxydé rouge",
+    "image": "/images/hematite.png"
+  },
+  "14": {
+    "en": "Amethyst",
+    "fr": "Améthyste",
+    "image": "/images/amethyst.png"
+  },
+  "15": {
+    "en": "Malachite",
+    "fr": "Malachite",
+    "image": "/images/malachite.png"
+  },
+  "16": {
+    "en": "Green Opal",
+    "fr": "Opale verte fossilisée",
+    "image": "/images/green_opal.png"
+  },
+  "17": {
+    "en": "Aragonite",
+    "fr": "Aragonite cristallisée",
+    "image": "/images/aragonite.png"
+  },
+  "18": {
+    "en": "Black Moonstone",
+    "fr": "Pierre de lune noire",
+    "image": "/images/black_moonstone.png"
+  },
+  "19": {
+    "en": "Topaz",
+    "fr": "Topaze",
+    "image": "/images/topaz.png"
+  },
+  "20": {
+    "en": "Lapis Lazuli",
+    "fr": "Lapis lazuli",
+    "image": "/images/lapis_lazuli.png"
+  },
+  "21": {
+    "en": "Black Tourmaline",
+    "fr": "Tourmaline noire",
+    "image": "/images/black_tourmaline.png"
+  },
+  "22": {
+    "en": "Quartz",
+    "fr": "Cristal de roche / Quartz",
+    "image": "/images/quartz.png"
+  },
+  "23": {
+    "en": "Azurite",
+    "fr": "Azurite",
+    "image": "/images/azurite.png"
+  },
+  "24": {
+    "en": "Amazonite",
+    "fr": "Amazonite",
+    "image": "/images/amazonite.png"
+  },
+  "25": {
+    "en": "Septaria",
+    "fr": "Septaria / Pierre du dragon",
+    "image": "/images/septaria.png"
+  },
+  "26": {
+    "en": "Pyrite",
+    "fr": "Pyrite",
+    "image": "/images/pyrite.png"
+  },
+  "27": {
+    "en": "Green Fluorite",
+    "fr": "Fluorine verte / Fluorite verte",
+    "image": "/images/green_fluorite.png"
+  },
+  "28": {
+    "en": "Blue Apatite",
+    "fr": "Apatite bleue",
+    "image": "/images/blue_apatite.png"
+  },
+  "29": {
+    "en": "Sodalite",
+    "fr": "Sodalite",
+    "image": "/images/sodalite.png"
+  },
+  "30": {
+    "en": "Smoky Quartz",
+    "fr": "Quartz fumé",
+    "image": "/images/smoky_quartz.png"
+  },
+  "31": {
+    "en": "Sulfur",
+    "fr": "Souffre",
+    "image": "/images/sulfur.png"
+  },
+  "32": {
+    "en": "Labradorite",
+    "fr": "Labradorite",
+    "image": "/images/labradorite.png"
+  },
+  "33": {
+    "en": "Apophyllite",
+    "fr": "Apophyllite",
+    "image": "/images/apophyllite.png"
+  }
+}
