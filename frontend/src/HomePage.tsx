@@ -4,13 +4,13 @@ import MineralDNAForm from "./MineralDNAForm";
 
 interface HomePageProps {
   signOut: () => void;
-  user: { username: string };
+  user: { name: string };
 }
 
 const HomePage: React.FC<HomePageProps> = ({ signOut, user }) => {
   return (
     <div>
-      <h1>Welcome, {user.username}!</h1>
+      <h1>Welcome, {user.name}!</h1>
       <MineralDNAForm />
       <button onClick={signOut}>Sign out</button>
     </div>

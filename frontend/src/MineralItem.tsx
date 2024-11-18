@@ -20,12 +20,14 @@ const Mineral: React.FC<MineralProps> = ({ mineralID: mineralNumber }) => {
 
   return (
     <>
-      {mineral[language]}
-      <img
+      <span style={{ height: "50px", lineHeight: "50px" }}>
+        {mineral[language]}{" "}
+      </span>
+      {/* <img
         src={mineral.image}
         alt={mineral[language]}
-        style={{ width: "100px" }}
-      />
+        style={{ width: "50px" }}
+      /> */}
     </>
   );
 };

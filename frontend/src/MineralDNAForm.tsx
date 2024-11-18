@@ -30,6 +30,16 @@ const dnaResponseToArray = (r: DNAResponse) => {
   return fields;
 };
 
+const fetchWithAuth = async (url: string, options: RequestInit = {}) => {
+  const token = localStorage.getItem("id_token");
+  const headers = {
+    ...options.headers,
+    Authorization: `Bearer ${token}`,
+  };
+
+  return fetch(url, { ...options, headers });
+};
+
 const MineralDNAForm: React.FC = () => {
   const [names, setNames] = useState("");
   const [surnames, setSurnames] = useState("");
@@ -55,10 +65,10 @@ const MineralDNAForm: React.FC = () => {
     setSubmittedDOB(formattedDOB);
 
     try {
-      const response = await fetch(`${apiURL}/mineral_dna`, {
+      const response = await fetchWithAuth(`${apiURL}/mineral_dna`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "content-type": "application/json",
         },
         body: JSON.stringify(payload),
       });

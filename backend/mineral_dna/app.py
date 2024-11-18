@@ -3,7 +3,7 @@ from typing import Dict, Any
 from lib import calculate_mineral_DNA
 
 HEADERS = {
-    "Access-Control-Allow-Origin": "http://localhost:5173",
+    "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "OPTIONS,POST",
     "Access-Control-Allow-Headers": "Content-Type, Authorization",
 }

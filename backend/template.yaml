@@ -28,16 +28,3 @@ Resources:
           Properties:
             Path: /mineral_dna
             Method: POST
-            Cors:
-              AllowMethods: "OPTIONS,POST"
-              AllowOrigins: "http://localhost:5173,https://mineral-dna.emilysteel.software"
-              AllowHeaders: "*"
-        MineralDNAOptions:
-          Type: Api
-          Properties:
-            Path: /mineral_dna
-            Method: OPTIONS
-            Cors:
-              AllowMethods: "OPTIONS,POST"
-              AllowOrigins: "http://localhost:5173"
-              AllowHeaders: "*"

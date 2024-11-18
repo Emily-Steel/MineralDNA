@@ -20,12 +20,10 @@ const MineralDNAReport: React.FC<MineralDNAReportProps> = ({
 
   const renderPosition = (posID: number) => {
     return (
-      <>
-        <li key={"position-" + posID}>
-          <PositionLabel positionID={posID.toString()} />
-          <Mineral mineralID={dna[posID - 1]} />
-        </li>
-      </>
+      <li key={"position-" + posID}>
+        <PositionLabel positionID={posID.toString()} />
+        <Mineral mineralID={dna[posID - 1]} />
+      </li>
     );
   };
 
