@@ -55,6 +55,7 @@ const MineralDNAForm: React.FC = () => {
     const formattedDOB = dob.replace(/-/g, "/");
 
     const payload = {
+      userID: "test-fe",
       names: names,
       surnames: surnames,
       dob: formattedDOB,

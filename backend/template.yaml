@@ -28,3 +28,24 @@ Resources:
           Properties:
             Path: /mineral_dna
             Method: POST
+      Environment:
+        Variables:
+          POSTGRES_SECRET_ARN: "arn:aws:secretsmanager:eu-west-3:084828604969:secret:postgres_url-GmhUgh"
+
+  RetrieveDNAFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: mineral_dna/
+      Handler: retrieve_dna.lambda_handler
+      Runtime: python3.13
+      Architectures:
+        - x86_64
+      Events:
+        RetrieveDNA:
+          Type: Api
+          Properties:
+            Path: /retrieve_dna
+            Method: GET
+      Environment:
+        Variables:
+          POSTGRES_SECRET_ARN: "arn:aws:secretsmanager:eu-west-3:084828604969:secret:postgres_url-GmhUgh"
